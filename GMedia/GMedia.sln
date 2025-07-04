@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GMedia", "GMedia.csproj", "{7095FEEF-9DA9-3CF7-4139-00A221ED4DA9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7095FEEF-9DA9-3CF7-4139-00A221ED4DA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7095FEEF-9DA9-3CF7-4139-00A221ED4DA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7095FEEF-9DA9-3CF7-4139-00A221ED4DA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7095FEEF-9DA9-3CF7-4139-00A221ED4DA9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {556AB9F2-157A-4157-A39B-D1A2FEC1EF7C}
+	EndGlobalSection
+EndGlobal

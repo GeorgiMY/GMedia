@@ -1,105 +1,117 @@
-﻿@model GMedia.Controllers.UsersController.UserDetailsViewModel
+@model GMedia.Controllers.UsersController.UserDetailsViewModel
 
 <div class="container">
-    <h2 class="text-center">@(Model.ViewedUser.UserName) - User Details</h2>
-    
-    @if (Model.Friendship == null)
-    {
-        <h2 class="text-center">Friend Status: Not Friends</h2>
-        <div class="d-flex justify-content-center">
-            <div>
-                <form method="post" asp-action="SendFriendRequest" asp-route-id="@Model.ViewedUser.Id">
-                    <button class="btn btn-primary" type="submit">Send Friend Request</button>
-                </form>
-            </div>
-        </div>
-    }
-    else
-    {
-        @switch (Model.Friendship.Status)
-        {
-            case Enums.FriendshipStatus.Accepted:
-                <h2 class="text-center">You are friends with @Model.ViewedUser.UserName</h2>
-                <div class="d-flex justify-content-center">
-                    <div>
-                        <form method="post" asp-action="RemoveFriend" asp-route-id="@Model.ViewedUser.Id">
-                            <button class="btn btn-danger" type="submit">Remove Friend</button>
-                        </form>
-                    </div>
-                </div>
-                break;
-            case Enums.FriendshipStatus.Pending:
-                <h2 class="text-center">Friend Status: Pending</h2>
-                if (Model.ViewedUser.Id != Model.Friendship.SenderId)
-                {
-                    <div class="d-flex justify-content-center">
-                        <div>
-                            <form method="post" asp-action="AcceptFriendRequest" asp-route-id="@Model.ViewedUser.Id">
-                                <button class="btn btn-primary" type="submit">Accept Friend Request</button>
-                            </form>
-                            <br />
-                            <form method="post" asp-action="RejectFriendRequest" asp-route-id="@Model.ViewedUser.Id">
-                                <button class="btn btn-danger" type="submit">Reject Friend Request</button>
-                            </form>
-                        </div>
-                    </div>
-                }
-                else
-                {
-                    <div class="d-flex justify-content-center">
-                        <div>
-                            <form method="post" asp-action="WithdrawFriendRequest" asp-route-id="@Model.ViewedUser.Id">
-                                <button class="btn btn-danger" type="submit">Withdraw Friend Request</button>
-                            </form>
-                        </div>
-                    </div>
-                }
-                break;
-            case Enums.FriendshipStatus.Withdrawn:
-                <h2 class="text-center">Friend Status: Not Friends</h2>
-                <div class="d-flex justify-content-center">
-                    <div>
-                        <form method="post" asp-action="SendFriendRequest" asp-route-id="@Model.ViewedUser.Id">
-                            <button class="btn btn-primary" type="submit">Send Friend Request</button>
-                        </form>
-                    </div>
-                </div>
-                break;
-            case Enums.FriendshipStatus.Rejected:
-                <h2 class="text-center">Friend Status: Not Friends</h2>
-                <div class="d-flex justify-content-center">
-                    <div>
-                        <form method="post" asp-action="SendFriendRequest" asp-route-id="@Model.ViewedUser.Id">
-                            <button class="btn btn-primary" type="submit">Send Friend Request</button>
-                        </form>
-                    </div>
-                </div>
-                break;
-            default:
-                break;
-        }
-    }
+	<h2 class="text-center">@(Model.ViewedUser.UserName) - User Details</h2>
 
-    <br />
+	@if (Model.Friendship == null)
+	{
+		<h2 class="text-center">Friend Status: Not Friends</h2>
+		<div class="d-flex justify-content-center">
+			<div>
+				<form method="post" asp-action="SendFriendRequest" asp-route-id="@Model.ViewedUser.Id">
+					<button class="btn btn-primary" type="submit">Send Friend Request</button>
+				</form>
+			</div>
+		</div>
+	}
+	else
+	{
+		@switch (Model.Friendship.Status)
+		{
+			case Enums.FriendshipStatus.Accepted:
+			{
+				<h2 class="text-center">You are friends with @Model.ViewedUser.UserName</h2>
+				<div class="d-flex justify-content-center">
+					<div>
+						<form method="post" asp-action="RemoveFriend" asp-route-id="@Model.ViewedUser.Id">
+							<button class="btn btn-danger" type="submit">Remove Friend</button>
+						</form>
+					</div>
+				</div>
+				break;    
+			}
+			case Enums.FriendshipStatus.Pending:
+			{
+				<h2 class="text-center">Friend Status: Pending</h2>
 
-    <div>
-        <dl class="row">
-            <dt class="col-sm-3">Username</dt>
-            <dd class="col-sm-9">@Model.ViewedUser.UserName</dd>
-            <dt class="col-sm-3">Names</dt>
-            <dd class="col-sm-9">@Model.ViewedUser.Names</dd>
-            <dt class="col-sm-3">Email</dt>
-            <dd class="col-sm-9">@Model.ViewedUser.Email</dd>
-            <dt class="col-sm-3">Gender</dt>
-            <dd class="col-sm-9">@Model.ViewedUser.Gender</dd>
-            <dt class="col-sm-3">Birth date</dt>
-            <dd class="col-sm-9">@Model.ViewedUser.BirthDate</dd>
-        </dl>
-    </div>
+				if (Model.ViewedUser.Id != Model.Friendship.SenderId)
+				{
+					<div class="d-flex justify-content-center">
+						<div>
+							<form method="post" asp-action="AcceptFriendRequest" asp-route-id="@Model.ViewedUser.Id">
+								<button class="btn btn-primary" type="submit">Accept Friend Request</button>
+							</form>
+							<br />
+							<form method="post" asp-action="RejectFriendRequest" asp-route-id="@Model.ViewedUser.Id">
+								<button class="btn btn-danger" type="submit">Reject Friend Request</button>
+							</form>
+						</div>
+					</div>
+				}
+				else
+				{
+					<div class="d-flex justify-content-center">
+						<div>
+							<form method="post" asp-action="WithdrawFriendRequest" asp-route-id="@Model.ViewedUser.Id">
+								<button class="btn btn-danger" type="submit">Withdraw Friend Request</button>
+							</form>
+						</div>
+					</div>
+				}
+				break;
+			}
+			case Enums.FriendshipStatus.Withdrawn:
+			{
+				<h2 class="text-center">Friend Status: Not Friends</h2>
+
+				<div class="d-flex justify-content-center">
+					<div>
+						<form method="post" asp-action="SendFriendRequest" asp-route-id="@Model.ViewedUser.Id">
+							<button class="btn btn-primary" type="submit">Send Friend Request</button>
+						</form>
+					</div>
+				</div>
+				break;
+			}
+			case Enums.FriendshipStatus.Rejected:
+			{
+				<h2 class="text-center">Friend Status: Not Friends</h2>
+				<div class="d-flex justify-content-center">
+					<div>
+						<form method="post" asp-action="SendFriendRequest" asp-route-id="@Model.ViewedUser.Id">
+							<button class="btn btn-primary" type="submit">Send Friend Request</button>
+						</form>
+					</div>
+				</div>
+				break;
+			}
+			default:
+			{
+				break;
+			}
+		}
+	}
+
+	<br />
+
+	<div>
+		<dl class="row">
+			<dt class="col-sm-3">Username</dt>
+			<dd class="col-sm-9">@Model.ViewedUser.UserName</dd>
+			<dt class="col-sm-3">Names</dt>
+			<dd class="col-sm-9">@Model.ViewedUser.Names</dd>
+			<dt class="col-sm-3">Email</dt>
+			<dd class="col-sm-9">@Model.ViewedUser.Email</dd>
+			<dt class="col-sm-3">Gender</dt>
+			<dd class="col-sm-9">@Model.ViewedUser.Gender</dd>
+			<dt class="col-sm-3">Birth date</dt>
+			<dd class="col-sm-9">@Model.ViewedUser.BirthDate</dd>
+		</dl>
+	</div>
 </div>
 
 @section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
 }

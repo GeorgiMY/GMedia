@@ -1,24 +1,24 @@
-﻿@model Dictionary<string, string>
+@model Dictionary<string, string>
 
 <div>
-    <ul>
-        @if (!Model.Any())
-        {
-            <h2 class="text-center">You don't have any friends currently :(</h2>
-            <h2 class="text-center">Invite some using <a href="@($"{Context.Request.Scheme}://{Context.Request.Host}/Invitations/Create")">this link</a>!</h2>
-        }
-        else
-        {
-            foreach (KeyValuePair<string, string> pair in Model)
-            {
-                <li><a href="@($"{Context.Request.Scheme}://{Context.Request.Host}/Users/Details/{pair.Key.Split("|")[1]}")">@($"{pair.Key.Split("|")[0]} - {pair.Value}")</a></li>
-            }
-        }
-    </ul>
+	<ul>
+		@if (!Model.Any())
+		{
+			<h2 class="text-center">You don't have any friends currently :(</h2>
+			<h2 class="text-center">Invite some using <a href="@($"{Context.Request.Scheme}://{Context.Request.Host}/Invitations/Create")">this link</a>!</h2>
+		}
+		else
+		{
+			foreach (KeyValuePair<string, string> pair in Model)
+			{
+				<li><a href="@($"{Context.Request.Scheme}://{Context.Request.Host}/Users/Details/{pair.Key.Split("|")[1]}")">@($"{pair.Key.Split("|")[0]} - {pair.Value}")</a></li>
+			}
+		}
+	</ul>
 </div>
 
 @section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
 }

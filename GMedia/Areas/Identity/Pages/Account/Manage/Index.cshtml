@@ -1,52 +1,53 @@
-﻿@page
+@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Profile";
-    ViewData["ActivePage"] = ManageNavPages.Index;
+	ViewData["Title"] = "Profile";
+	ViewData["ActivePage"] = ManageNavPages.Index;
 }
 
 <h3>@ViewData["Title"]</h3>
 <partial name="_StatusMessage" for="StatusMessage" />
 <div class="row">
-    <div class="col-md-6">
-        <form id="profile-form" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
-            <div class="form-floating mb-3">
-                <input asp-for="Username" class="form-control" placeholder="Please choose your username." disabled />
-                <label asp-for="Username" class="form-label"></label>
-            </div>
-            <div class="form-floating mb-3">
-                <input asp-for="Input.PhoneNumber" class="form-control" placeholder="Please enter your phone number."/>
-                <label asp-for="Input.PhoneNumber" class="form-label"></label>
-                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
-            </div>
+	<div class="col-md-6">
+		<form id="profile-form" method="post">
+			<div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+			<div class="form-floating mb-3">
+				<input asp-for="Username" class="form-control" placeholder="Please choose your username." disabled />
+				<label asp-for="Username" class="form-label"></label>
+			</div>
+			<div class="form-floating mb-3">
+				<input asp-for="Input.PhoneNumber" class="form-control" placeholder="Please enter your phone number." />
+				<label asp-for="Input.PhoneNumber" class="form-label"></label>
+				<span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+			</div>
 
-            <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
+			<button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
 
-            <br />
-            <br />
+			<br />
+			<br />
 
-            @* Friends list*@
-            <h2 class ="text-center">Friends List</h2>
-            <ul>
-                @if (!Model.AllAssociatedUsersAndStatus.Any())
-                {
-                    <h2 class="text-center">You don't have any friends currently :(</h2>
-                    <h2 class="text-center">Invite some using <a href="@($"{Request.Scheme}://{Request.Host}/Invitations/Create")">this link</a>!</h2>
-                }
-                else
-                {
-                    foreach (KeyValuePair<string, string> pair in Model.AllAssociatedUsersAndStatus)
-                    {
-                        <li><a href="@($"{Request.Scheme}://{Request.Host}/Users/Details/{pair.Key.Split("|")[1]}")">@($"{pair.Key.Split("|")[0]} - {pair.Value}")</a></li>
-                    }
-                }
-            </ul>
+			@* Friends list*@
+			<h2 class="text-center">Friends List</h2>
 
-        </form>
-    </div>
+			<ul>
+				@if (!Model.AllAssociatedUsersAndStatus.Any())
+				{
+					<h2 class="text-center">You don't have any friends currently :(</h2>
+					<h2 class="text-center">Invite some using <a href="@($"{Request.Scheme}://{Request.Host}/Invitations/Create")">this link</a>!</h2>
+				}
+				else
+				{
+					foreach (KeyValuePair<string, string> pair in Model.AllAssociatedUsersAndStatus)
+					{
+						<li><a href="@($"{Request.Scheme}://{Request.Host}/Users/Details/{pair.Key.Split("|")[1]}")">@($"{pair.Key.Split("|")[0]} - {pair.Value}")</a></li>
+					}
+				}
+			</ul>
+
+		</form>
+	</div>
 </div>
 
 @section Scripts {
-    <partial name="_ValidationScriptsPartial" />
+	<partial name="_ValidationScriptsPartial" />
 }

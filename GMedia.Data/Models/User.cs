@@ -1,8 +1,7 @@
 using Microsoft.AspNetCore.Identity;
+using static GMedia.Data.Enums;
 
-using static GMedia.Enums;
-
-namespace GMedia.Models
+namespace GMedia.Data.Models
 {
 	public class User : IdentityUser
 	{

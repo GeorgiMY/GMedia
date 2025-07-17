@@ -1,3 +1,5 @@
+@using GMedia.Data.Models
+@using GMedia.UI.Areas.Identity.Pages.Account.Manage
 @inject SignInManager<User> SignInManager
 @{
 	bool hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();

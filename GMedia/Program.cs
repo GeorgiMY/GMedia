@@ -1,9 +1,10 @@
 using GMedia.Data;
-using GMedia.Models;
+using GMedia.Data.Models;
+using GMedia.Services;
 
 using Microsoft.EntityFrameworkCore;
 
-namespace GMedia
+namespace GMedia.UI
 {
 	public class Program
 	{
@@ -17,7 +18,6 @@ namespace GMedia
 				options.UseSqlServer(connectionString));
 			builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-			//builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();
 			builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false).AddEntityFrameworkStores<ApplicationDbContext>();
 
 			builder.Services.AddControllersWithViews();
@@ -25,7 +25,11 @@ namespace GMedia
 			WebApplication app = builder.Build();
 
 			// Seed database
-			await Seeder.SeedData(app.Services, app.Environment);
+			IServiceScope scope = app.Services.CreateScope();
+			ApplicationDbContext db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+			bool isDev = app.Environment.IsDevelopment();
+
+			await Seeder.SeedData(db, isDev, scope);
 
 			// Configure the HTTP request pipeline.
 			if (app.Environment.IsDevelopment())

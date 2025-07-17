@@ -28,4 +28,9 @@
     <None Include="E:\Programming\Projects\GMedia\GMedia\GMedia\.editorconfig" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GMedia.Data\GMedia.Data.csproj" />
+    <ProjectReference Include="..\GMedia.Services\GMedia.Services.csproj" />
+  </ItemGroup>
+
 </Project>

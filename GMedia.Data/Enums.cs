@@ -1,4 +1,4 @@
-namespace GMedia
+namespace GMedia.Data
 {
 	public class Enums
 	{

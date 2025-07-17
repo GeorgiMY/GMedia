@@ -1,5 +1,5 @@
-@model List<GMedia.Models.Post>
-@inject Microsoft.AspNetCore.Identity.UserManager<GMedia.Models.User> UserManager
+@model List<GMedia.Data.Models.Post>
+@inject Microsoft.AspNetCore.Identity.UserManager<GMedia.Data.Models.User> UserManager
 @{
 	ViewData["Title"] = "Home Page";
 	string currentUserId = UserManager.GetUserId(User);

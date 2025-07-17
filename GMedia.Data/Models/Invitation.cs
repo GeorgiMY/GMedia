@@ -1,4 +1,4 @@
-namespace GMedia.Models
+namespace GMedia.Data.Models
 {
 	public class Invitation
 	{

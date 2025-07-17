@@ -1,5 +1,5 @@
 using GMedia.Data;
-using GMedia.Models;
+using GMedia.Data.Models;
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
-namespace GMedia.Controllers
+namespace GMedia.UI.Controllers
 {
 	[Authorize]
 	public class InvitationsController : Controller

@@ -1,5 +1,5 @@
 using GMedia.Data;
-using GMedia.Models;
+using GMedia.Data.Models;
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

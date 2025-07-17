@@ -1,6 +1,6 @@
-using static GMedia.Enums;
+using static GMedia.Data.Enums;
 
-namespace GMedia.Models
+namespace GMedia.Data.Models
 {
 	public class Friendship
 	{

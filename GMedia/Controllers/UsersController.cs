@@ -1,13 +1,13 @@
 using GMedia.Data;
-using GMedia.Models;
+using GMedia.Data.Models;
 
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-using static GMedia.Enums;
+using static GMedia.Data.Enums;
 
-namespace GMedia.Controllers
+namespace GMedia.UI.Controllers
 {
 	public class UsersController : Controller
 	{

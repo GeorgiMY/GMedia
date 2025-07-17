@@ -46,9 +46,12 @@
 			<li class="page-item disabled">
 				<span class="page-link">Page @currentPage</span>
 			</li>
-			<li class="page-item">
-				<a class="page-link" asp-action="Index" asp-route-page="@(currentPage + 1)">Next</a>
-			</li>
+            @if (Model.Count == 25)
+            {
+			    <li class="page-item">
+				    <a class="page-link" asp-action="Index" asp-route-page="@(currentPage + 1)">Next</a>
+			    </li>
+            }
 		</ul>
 	</nav>
 </div>

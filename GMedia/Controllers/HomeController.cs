@@ -36,15 +36,16 @@ namespace GMedia.UI.Controllers
 
 			List<string> friendsOfFriendsIds = await _context.Friendships.Where(f => (friendsIds.Contains(f.SenderId) || friendsIds.Contains(f.ResponderId)) && f.Status == FriendshipStatus.Accepted).Select(f => friendsIds.Contains(f.SenderId) ? f.ResponderId : f.SenderId).Distinct().ToListAsync();
 
-			List<string> usersToInclude = friendsIds.Concat(friendsOfFriendsIds).Append(currentUser.Id).Distinct().ToList();
-
-			List<Post> postsQuery = await _context.Posts.Include(p => p.Author).Where(p => usersToInclude.Contains(p.AuthorId))
+			List<Post> postsQuery = await _context.Posts
+				.Include(p => p.Author)
 				.Where(p =>
-					p.Visibility == VisibilityOptions.Public ||
+					p.AuthorId == currentUser.Id ||
+					(p.Visibility == VisibilityOptions.Public && p.AuthorId != currentUser.Id) ||
 					(p.Visibility == VisibilityOptions.FriendsOnly && friendsIds.Contains(p.AuthorId)) ||
-					p.AuthorId == currentUser.Id
+					(p.Visibility == VisibilityOptions.FriendsOfFriends && friendsOfFriendsIds.Contains(p.AuthorId))
 				)
-				.OrderByDescending(p => p.CreatedAt).ToListAsync();
+				.OrderByDescending(p => p.CreatedAt)
+				.ToListAsync();
 
 			int pageSize = 25;
 

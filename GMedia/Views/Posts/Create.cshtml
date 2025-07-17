@@ -33,6 +33,7 @@
 				<select asp-for="Visibility" class="form-control" asp-items="visibilityValues"></select>
 				<span asp-validation-for="Visibility" class="text-danger"></span>
 			</div>
+            <br />
 			<div class="form-group">
 				<input type="submit" value="Create" class="btn btn-primary" />
 			</div>
@@ -41,7 +42,7 @@
 </div>
 
 <div>
-	<a asp-action="Index">Back to List</a>
+	<a href="/">Back to Home</a>
 </div>
 
 @section Scripts {

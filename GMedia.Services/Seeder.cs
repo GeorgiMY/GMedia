@@ -145,9 +145,60 @@ namespace GMedia.Services
 				}
 			);
 
-			await context.SaveChangesAsync();
+            Random random = new Random();
+            string[] quotes = 
+            {
+				"The only limit to our realization of tomorrow is our doubts of today.",
+				"Do what you can, with what you have, where you are.",
+				"Success is not final, failure is not fatal: It is the courage to continue that counts.",
+				"In the middle of every difficulty lies opportunity.",
+				"Happiness is not something ready-made. It comes from your own actions.",
+				"Believe you can and you're halfway there.",
+				"Life is 10% what happens to us and 90% how we react to it.",
+				"Dream big and dare to fail.",
+				"It always seems impossible until it's done.",
+				"You miss 100% of the shots you don't take.",
+				"What lies behind us and what lies before us are tiny matters compared to what lies within us.",
+				"The best way to predict the future is to create it.",
+				"Don't watch the clock; do what it does. Keep going.",
+				"Everything you’ve ever wanted is on the other side of fear.",
+				"I am not a product of my circumstances. I am a product of my decisions.",
+				"Keep your face always toward the sunshine—and shadows will fall behind you.",
+				"Hardships often prepare ordinary people for an extraordinary destiny.",
+				"Your time is limited, so don’t waste it living someone else’s life.",
+				"The future belongs to those who believe in the beauty of their dreams.",
+				"Sometimes the bravest and most important thing you can do is just show up.",
+				"Small deeds done are better than great deeds planned.",
+				"Doubt kills more dreams than failure ever will.",
+				"The way to get started is to quit talking and begin doing.",
+				"Strive not to be a success, but rather to be of value.",
+				"It does not matter how slowly you go as long as you do not stop.",
+				"Quality means doing it right when no one is looking.",
+				"You don’t have to be great to start, but you have to start to be great.",
+				"The secret of getting ahead is getting started.",
+				"The only way to do great work is to love what you do.",
+				"Success usually comes to those who are too busy to be looking for it."
+			};
 
-			Console.WriteLine("Database has been seeded");
+            string[] userIds = { user1.Id, user2.Id, user3.Id };
+
+            for (int i = 0; i < 30; i++)
+            {
+                int user = random.Next(userIds.Length);
+                string text = quotes[i % quotes.Length];
+                DateTime createdAt = DateTime.UtcNow.AddDays(-random.Next(1, 30));
+
+                context.Posts.Add(new Post
+                {
+                    Id = Guid.NewGuid(),
+                    AuthorId = userIds[user],
+                    Text = text,
+                    Visibility = VisibilityOptions.Public,
+                    CreatedAt = createdAt
+                });
+            }
+
+            await context.SaveChangesAsync();
 		}
 	}
 }
